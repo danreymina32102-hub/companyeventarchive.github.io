@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Company Event Archive</title>
+<meta name="description" content="Secure photo and video archive for company events.">
+<meta name="theme-color" content="#0b2a5b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Company Event Archive">
+<meta property="og:description" content="Secure photo and video archive for company events.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%93%B8%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f3f5f9;--sf:#fff;--tx:#14213d;--mu:#5b6678;--br:#d9dee8;--pr:#0b2a5b;--pt:#fff;--ac:#1f5fbf;--dn:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1420;--sf:#151f30;--tx:#e8edf5;--mu:#9aa6b8;--br:#26344c;--pr:#2a5db0;--ac:#6ea2f0;--dn:#f0887d;color-scheme:dark}}
+@media(prefers-color-scheme:dark){:root[data-theme=dark]{--bg:#0d1420;--sf:#151f30;--tx:#e8edf5;--mu:#9aa6b8;--br:#26344c;--pr:#2a5db0;--ac:#6ea2f0;--dn:#f0887d;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0d1420;--sf:#151f30;--tx:#e8edf5;--mu:#9aa6b8;--br:#26344c;--pr:#2a5db0;--ac:#6ea2f0;--dn:#f0887d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 "Segoe UI",Helvetica,Arial,sans-serif}
+button,input,select{font:inherit;color:inherit}
+.hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 20px;background:linear-gradient(160deg,#0b2a5b,#173f80);color:#fff}
+.hero .brand{letter-spacing:.2em;text-transform:uppercase;font-size:12px;opacity:.8;margin-bottom:20px}
+.hero h1{font:600 clamp(26px,4.6vw,42px)/1.25 Georgia,"Times New Roman",serif;letter-spacing:.05em;margin:0 0 16px;max-width:820px}
+.hero p{margin:0 0 30px;max-width:620px;opacity:.88}
+.hero{position:relative}.dots{position:absolute;top:12px;right:14px;background:transparent;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;padding:4px 12px;border-radius:4px}.dots:hover{background:rgba(255,255,255,.15)}
+.menu{position:absolute;top:54px;right:14px;background:var(--sf);border:1px solid var(--br);border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.25);min-width:150px;z-index:3;text-align:left}
+.menu button{display:block;width:100%;text-align:left;background:transparent;border:0;padding:10px 14px;cursor:pointer;color:var(--tx)}.menu button:hover{background:var(--bg)}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero small{margin-top:40px;opacity:.6}
+.btn{border:1px solid var(--pr);background:var(--pr);color:var(--pt);padding:9px 18px;border-radius:4px;cursor:pointer;font-weight:600}
+.btn:hover{filter:brightness(1.12)}
+.btn.ghost{background:transparent;color:var(--tx);border-color:var(--br)}
+.btn.sm{padding:5px 10px;font-size:13px}.btn.dn{color:var(--dn);border-color:var(--dn);background:transparent}
+.hero .btn{background:#fff;color:#0b2a5b;border-color:#fff;padding:12px 24px}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.card0{position:relative;background:var(--sf);border:1px solid var(--br);border-radius:6px;padding:28px;width:100%;max-width:400px;text-align:left;color:var(--tx)}
+.card0 h2{margin:0 0 4px;font:600 22px Georgia,serif}.card0 p{margin:0 0 18px;opacity:1;color:var(--mu)}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+input,select{width:100%;padding:9px 10px;border:1px solid var(--br);border-radius:4px;background:var(--bg)}
+.err{color:var(--dn);font-size:13px;min-height:20px;margin-top:8px}
+.x{position:absolute;top:8px;right:10px;background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer;color:var(--mu);padding:2px 8px}.x:hover{color:var(--tx)}
+.ph{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;text-align:center;padding:8px}
+.top{display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--pr);color:#fff;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.top .brand{font:600 18px Georgia,serif}.sp{flex:1}.who{font-size:13px;opacity:.9}
+.top .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+.lay{display:flex;gap:20px;padding:20px;max-width:1300px;margin:0 auto}
+aside{width:230px;flex:none}
+aside h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin:0 0 8px}
+.chip{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:transparent;border:0;border-left:3px solid transparent;padding:8px 10px;cursor:pointer;border-radius:0 4px 4px 0}
+.chip:hover{background:var(--sf)}.chip.on{background:var(--sf);border-left-color:var(--ac);font-weight:600}
+.chip span:last-child{color:var(--mu);font-size:12px}
+main{flex:1;min-width:0}
+.mh{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.mh h2{margin:0;font:600 22px Georgia,serif;flex:1;min-width:140px}.mh input{width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,2in);gap:12px;justify-content:start}
+.card{width:2in;background:var(--sf);border:1px solid var(--br);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.th{position:relative;width:2in;height:2in;background:#000;cursor:pointer}
+.th img,.th video{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.7);color:#fff;font-size:11px;padding:2px 6px;border-radius:3px}
+.meta{padding:6px 8px 2px}.meta .t{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta small{color:var(--mu)}
+.row{display:flex;gap:4px;padding:6px 8px 8px;flex-wrap:wrap}.row .btn{padding:4px 7px;font-size:12px}
+.empty{padding:50px 20px;text-align:center;color:var(--mu);border:1px dashed var(--br);border-radius:6px}
+.pn{background:var(--sf);border:1px solid var(--br);border-radius:6px;padding:20px;margin-bottom:18px}
+.pn h3{margin:0 0 6px;font:600 18px Georgia,serif}
+.ur{display:flex;gap:8px;align-items:center;padding:10px 0;border-top:1px solid var(--br);flex-wrap:wrap}.ur div{flex:1;min-width:140px}
+.ov{position:fixed;inset:0;background:rgba(5,10,20,.7);display:flex;align-items:center;justify-content:center;padding:16px;z-index:20}
+.md{background:var(--sf);border-radius:6px;max-width:min(920px,100%);width:100%;max-height:92vh;overflow:auto;padding:20px}
+.md.nar{max-width:420px}.md h3{margin:0 0 8px;font:600 19px Georgia,serif}
+.md img,.md video{max-width:100%;max-height:68vh;display:block;margin:0 auto 14px;background:#000}
+.ft{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.hero{isolation:isolate}
+.scene{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#14224f}
+.scene svg{width:100%;height:100%;display:block;transform-origin:80% 100%;animation:kb 45s ease-in-out infinite alternate}
+.scene::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 38%,rgba(5,8,25,.55) 100%),linear-gradient(rgba(6,10,30,.5),rgba(6,10,30,0) 48%)}
+.hero{--k:1}@media(max-width:600px){.hero{--k:.7}}
+.stack{display:flex;flex-direction:column;align-items:center;max-width:100%;width:100%}
+.stack>*{text-shadow:0 2px 14px rgba(0,0,0,.5)}.stack>.nosh{text-shadow:none}
+.ovl{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.dz{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}.dz .tools{max-height:82vh;overflow:auto;margin:0}
+@media(max-width:900px){.dz{grid-template-columns:1fr}}
+.pv{position:relative;height:min(68vh,560px);border:1px solid var(--br);border-radius:6px;overflow:hidden;margin-bottom:16px}
+.pv .hero{min-height:0;height:100%;overflow:hidden;padding:20px}
+.ed{cursor:move!important;touch-action:none;user-select:none;outline:1px dashed transparent}.ed:hover{outline-color:rgba(255,255,255,.75)}.ed.sel{outline:2px solid #4da3ff;outline-offset:3px}.ed.hid{opacity:.3!important}
+.fr{margin:9px 0}.fr>label{margin:0 0 3px;font-size:12px;color:var(--mu);font-weight:600}
+.rg{display:flex;gap:8px;align-items:center}.rg input[type=range]{padding:0;flex:1;accent-color:var(--ac)}.rg .nm{width:74px;flex:none}
+input[type=color]{padding:2px;height:34px;width:64px}
+.tgs{display:flex;gap:6px;flex-wrap:wrap}.tg{border:1px solid var(--br);background:transparent;border-radius:4px;padding:5px 10px;cursor:pointer;min-width:34px}.tg.on{background:var(--pr);color:var(--pt);border-color:var(--pr)}
+.lyrs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.lyr{border:1px solid var(--br);background:transparent;border-radius:16px;padding:4px 11px;cursor:pointer;font-size:13px}.lyr.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.sec{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin:16px 0 2px;border-top:1px solid var(--br);padding-top:10px}
+.hero .card0{background:var(--sf);background:color-mix(in srgb,var(--sf) 93%,transparent);backdrop-filter:blur(8px);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.hero .card0 .btn{background:var(--pr);color:var(--pt);border-color:var(--pr)}.hero .card0 .btn.ghost{background:transparent;color:var(--tx);border-color:var(--br)}
+.glow{animation:sp 7s ease-in-out infinite}
+.rays{transform-origin:1300px 395px;animation:spin 140s linear infinite}
+.cl{animation:drift 80s ease-in-out infinite alternate}
+.pt{animation:rise 14s linear infinite}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+@keyframes sp{0%,100%{opacity:.82}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{from{transform:translateX(-50px)}to{transform:translateX(70px)}}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.85}100%{transform:translateY(-170px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.scene svg,.glow,.rays,.cl,.pt{animation:none}}
+.welcome{font-weight:600;font-size:14px;animation:wl .7s ease both}
+@keyframes wl{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.welcome small{font-weight:400;opacity:.85;margin-left:6px}
+.help{position:relative;display:inline-block;margin-top:6px}
+.help .hb{background:transparent;border:0;color:var(--ac);text-decoration:underline;cursor:help;padding:0;font-size:13px}
+.help .tip{display:none;position:absolute;left:0;bottom:calc(100% + 8px);width:min(320px,80vw);background:#14213d;color:#fff;border:1px solid rgba(255,255,255,.3);padding:10px 12px;border-radius:4px;font-size:13px;line-height:1.4;z-index:5;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.help:hover .tip,.help:focus-within .tip,.help.open .tip{display:block}
+@media(max-width:760px){.lay{flex-direction:column;padding:14px}aside{width:100%;display:flex;gap:6px;overflow-x:auto;align-items:center}aside h3{display:none}
+.chip{border:1px solid var(--br);border-radius:20px;white-space:nowrap;width:auto}.chip.on{border-color:var(--ac)}.mh input{width:100%}.grid{grid-template-columns:repeat(2,1fr);gap:8px;justify-content:stretch}.card{width:auto}.th{width:100%;height:auto;aspect-ratio:1}}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+html.lock,html.lock body{overflow:hidden}
+button,.chip,.lyr,.tg,summary,select{touch-action:manipulation}
+input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]),textarea{-webkit-appearance:none;appearance:none;border-radius:4px}
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
+.ov{top:0;right:0;bottom:0;left:0;overscroll-behavior:contain}
+.md{max-height:92vh;max-height:92dvh;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.scene,.ovl{top:0;right:0;bottom:0;left:0}
+.hero .card0{-webkit-backdrop-filter:blur(8px)}
+.syn{font-size:13px;white-space:nowrap}.syn i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#8a94a6}
+.syn.on i{background:#3ddc84}.syn.re i{background:#ffb020;animation:sp 1.2s infinite}.syn.off i{background:#ff6b6b}
+.tbw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.lg{width:100%;border-collapse:collapse;font-size:14px}.lg th,.lg td{text-align:left;padding:8px 10px;border-top:1px solid var(--br);white-space:nowrap}.lg th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);border-top:0}
+.rl{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;border:1px solid var(--br)}
+@media(max-width:600px),(pointer:coarse){input,select,textarea{font-size:16px}.btn,.chip,.lyr,.tg,.x,.dots{min-height:44px}.btn.sm{padding:8px 12px}.row .btn{min-height:36px}}
+@media(max-width:760px){.top{padding:8px 12px;gap:8px}.who{display:none}.top .brand{font-size:16px}.pn{padding:14px}.md{padding:14px}.mh h2{flex-basis:100%}.hero h1{overflow-wrap:anywhere}}
+@media(max-width:400px){.grid{gap:6px}.row .btn{padding:4px 5px;font-size:11px}}
+@media print{.top,aside{display:none}}
+</style>
+</head>
+<body>
+<div id="app"><p style="padding:48px 20px;text-align:center;color:#5b6678;font:15px sans-serif">Loading…</p></div>
+<noscript>This archive requires JavaScript. Please enable it and reload.</noscript>
+<script>
+"use strict";
+const app=document.getElementById('app');
+const S={view:'home',role:'employee',user:null,tab:'media',album:'all',albums:[],media:[],users:[],secrets:[],q:'',fails:0,settings:[],logins:[],lq:'',lr:'',eq:'',ec:'',dEdit:false,dDraft:null,dSel:'title',dMsg:''};
+const urls={};let db;
+/* ---------- helpers ---------- */
+function h(t,p,...k){const e=document.createElement(t);for(const x in(p||{})){const v=p[x];if(v==null||v===false)continue;if(x==='class')e.className=v;else if(x.startsWith('on')||x in e)e[x]=v;else e.setAttribute(x,v)}
+ k.flat().forEach(c=>{if(c!=null&&c!==false)e.append(c.nodeType?c:document.createTextNode(c))});return e}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const fmt=n=>n>1e9?(n/1e9).toFixed(2)+' GB':n>1e6?(n/1e6).toFixed(1)+' MB':Math.max(1,Math.round(n/1e3))+' KB';
+const CH=15*1048576,blobs={};
+const url=m=>m.blob?(urls[m.id]||(urls[m.id]=URL.createObjectURL(m.blob))):(m.chunks&&m.chunks.length===1)?'/_blob/'+m.chunks[0]:(urls[m.id]||null);
+async function getBlob(m){if(m.blob)return m.blob;if(blobs[m.id])return blobs[m.id];const parts=[];for(const c of m.chunks){const r=await fetch('/_blob/'+c);if(!r.ok)throw new Error('File unavailable');parts.push(await r.blob())}return blobs[m.id]=new Blob(parts,{type:m.mime||''})}
+async function hash(p){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('ea:'+p));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return'p:'+p}}
+/* ---------- storage (IndexedDB) ---------- */
+const open=()=>new Promise((res,rej)=>{const r=indexedDB.open('event-archive',3);r.onupgradeneeded=()=>['users','albums','media','secrets','settings'].forEach(s=>{if(!r.result.objectStoreNames.contains(s))r.result.createObjectStore(s,{keyPath:'id'})});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const tx=(s,m,f)=>new Promise((res,rej)=>{const t=db.transaction(s,m),q=f(t.objectStore(s));t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)});
+const iAll=s=>tx(s,'readonly',o=>o.getAll()),iPut=(s,v)=>tx(s,'readwrite',o=>o.put(v)),iDel=(s,id)=>tx(s,'readwrite',o=>o.delete(id));
+let SYNC=null;/* shared live storage when available, else this browser only */
+async function put(s,v){if(SYNC){const d={...v};delete d.blob;delete d.id;await SYNC.db.collection(s).doc(v.id).set(d)}else{await iPut(s,v);ping()}const L=S[s],i=L.findIndex(x=>x.id===v.id);if(i<0)L.push(v);else L[i]=v}
+async function del(s,id){if(SYNC){await SYNC.db.collection(s).doc(id).delete()}else{await iDel(s,id);ping()}S[s]=S[s].filter(x=>x.id!==id)}
+const refresh=async()=>{if(!SYNC){[S.albums,S.media,S.users,S.secrets,S.settings]=await Promise.all([iAll('albums'),iAll('media'),iAll('users'),iAll('secrets'),iAll('settings')])}};
+const restricted=()=>S.user&&S.user.role!=='admin'&&Array.isArray(S.user.albums);
+const canSee=m=>!restricted()||S.user.albums.includes(m.albumId||'');
+const visAlbums=()=>restricted()?S.albums.filter(a=>S.user.albums.includes(a.id)):S.albums;
+const isAdm=()=>!!S.user&&S.user.role==='admin',isMod=()=>!!S.user&&S.user.role==='moderator',isStaff=()=>isAdm()||isMod();
+const can=k=>isAdm()||(isMod()&&!!(S.user.perms&&S.user.perms[k]));
+const need=k=>{if(!can(k))throw new Error('You do not have permission to do this.')};
+const PERMS=[['Archive',[['upload','Upload photos & videos'],['editMedia','Edit file titles & albums'],['deleteMedia','Delete photos & videos'],['download','Download by album (bulk)'],['albums','Create, rename & delete albums']]],
+ ['Employees',[['empView','Open Manage Access & view employee records'],['empAdd','Add employee accounts'],['empEdit','Edit employee company & album access'],['empPw','Change employee passwords'],['empRemove','Remove employee accounts']]],
+ ['Sign-in page',[['design','Edit the sign-in page design']]],['Activity',[['viewLog','View sign-in activity (who signed in, and when)']]]];
+const ALLP=PERMS.flatMap(g=>g[1].map(x=>x[0]));
+const permText=x=>{const on=PERMS.flatMap(g=>g[1]).filter(([k])=>x.perms&&x.perms[k]).map(([,t])=>t);return on.length?on.join(', '):'View only (monitoring)'};
+const needAdmin=()=>{if(!S.user||S.user.role!=='admin')throw new Error('Administrator access required')};
+/* ---------- auth ---------- */
+const signout=()=>{try{sessionStorage.removeItem('uid')}catch(e){}S.user=null;S.view='home';render()};
+async function signin(u,p){const x=S.users.find(a=>a.username===u.trim().toLowerCase());
+ if(!x||!(S.role==='admin'?(x.role==='admin'||x.role==='moderator'):x.role===S.role)||x.pw!==await hash(p)||(SYNC&&x.role!=='employee'&&!SYNC.edit))return false;
+ S.fails=0;S.user=x;S.view='dash';S.tab='media';S.album='all';try{sessionStorage.setItem('uid',x.id)}catch(e){}logSignin(x);return true}
+/* ---------- UI primitives ---------- */
+function modal(title,body,narrow){const ov=h('div',{class:'ov',onclick:e=>{if(e.target===ov)close()}});const close=()=>{ov.remove();unlock()};
+ ov.append(h('div',{class:'md'+(narrow?' nar':'')},h('h3',{},title),body));document.body.append(ov);document.documentElement.classList.add('lock');return close}
+function ask(title,label,val,type,ok){const i=h('input',{type:type||'text',value:val||''});const er=h('div',{class:'err'});let c;
+ const go=async()=>{if(!i.value.trim()){er.textContent='This field is required.';return}try{await ok(i.value.trim());c()}catch(e){er.textContent=e.message}};
+ i.onkeydown=e=>{if(e.key==='Enter')go()};
+ c=modal(title,h('div',{},h('label',{},label),i,er,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),h('button',{class:'btn',onclick:go},'Save'))),true);i.focus()}
+const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+async function saveBlob(b,name){try{const d=await claude.use('downloads');if(d){await d.save({filename:name,data:b});return}}catch(e){if(e&&e.code==='declined')return}
+ if(IOS&&navigator.canShare){try{const f=new File([b],name,{type:b.type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f]});return}}catch(e){if(e&&e.name==='AbortError')return}}
+ const u=URL.createObjectURL(b),a=h('a',{href:u,download:name,rel:'noopener'});document.body.append(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},4000)}
+async function download(m){try{await saveBlob(await getBlob(m),m.name)}catch(e){alert('Download failed: '+e.message)}}
+const albumSelect=v=>h('select',{},h('option',{value:''},'Unsorted'),S.albums.map(a=>h('option',{value:a.id,selected:a.id===v},a.name)));
+/* ---------- cinematic sunrise scene ---------- */
+function sceneSvg(){let sd=7;const r=()=>(sd=(sd*16807)%2147483647)/2147483647,CX=1300,CY=395,f0=n=>n.toFixed(0);
+ let stars='';for(let i=0;i<60;i++)stars+='<circle cx="'+f0(r()*1600)+'" cy="'+f0(r()*260)+'" r="'+(0.6+r()*1.1).toFixed(1)+'" fill="#fff" opacity="'+(0.25+r()*0.6).toFixed(2)+'"/>';
+ const skyline=(hMin,hMax,fill,op)=>{let x=-20,t='';while(x<1600){const w=30+r()*50,hh=hMin+r()*(hMax-hMin);t+='<rect x="'+f0(x)+'" y="'+f0(840-hh)+'" width="'+f0(w)+'" height="'+f0(hh)+'"/>';x+=w+r()*6}return'<g fill="'+fill+'" opacity="'+op+'">'+t+'</g>'};
+ const wins=(x,y,w,hh)=>{let t='';for(let yy=y+14;yy<y+hh-10;yy+=20)for(let xx=x+10;xx<x+w-12;xx+=16){const v=r(),f=v>.55?'#fff1b8':v>.2?'#cfe3ff':'#7e98c8';t+='<rect x="'+xx+'" y="'+yy+'" width="8" height="11" rx="1" fill="'+f+'" opacity="'+(0.45+r()*0.55).toFixed(2)+'"/>'}return t};
+ const bld=(x,y,w,g)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+(850-y)+'" fill="url(#'+g+')" stroke="#ffd98a" stroke-opacity=".75" stroke-width="2"/>'+wins(x,y,w,850-y);
+ let rays='';for(let a=-170;a<10;a+=12){const a1=a*Math.PI/180,a2=(a+5)*Math.PI/180,L=1500;rays+='<polygon points="'+CX+','+CY+' '+f0(CX+L*Math.cos(a1))+','+f0(CY+L*Math.sin(a1))+' '+f0(CX+L*Math.cos(a2))+','+f0(CY+L*Math.sin(a2))+'"/>'}
+ let pts='';for(let i=0;i<16;i++)pts+='<circle class="pt" cx="'+f0(r()*1600)+'" cy="'+f0(500+r()*330)+'" r="'+(1.5+r()*1.8).toFixed(1)+'" fill="#ffe9b0" style="animation-delay:-'+f0(r()*14)+'s;animation-duration:'+f0(10+r()*10)+'s"/>';
+ const o='<svg viewBox="0 0 1600 900" preserveAspectRatio="xMaxYMax slice" aria-hidden="true"><defs>'
+ +'<linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12204d"/><stop offset=".32" stop-color="#4a3f86"/><stop offset=".58" stop-color="#c75b7a"/><stop offset=".78" stop-color="#ff9a5c"/><stop offset="1" stop-color="#ffd98a"/></linearGradient>'
+ +'<radialGradient id="sunG" gradientUnits="userSpaceOnUse" cx="'+CX+'" cy="'+CY+'" r="760"><stop offset="0" stop-color="#fff8d0"/><stop offset=".12" stop-color="#ffe08a" stop-opacity=".95"/><stop offset=".3" stop-color="#ffa05a" stop-opacity=".5"/><stop offset=".6" stop-color="#ff6f6f" stop-opacity=".16"/><stop offset="1" stop-color="#ff6f6f" stop-opacity="0"/></radialGradient>'
+ +'<linearGradient id="bT" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#b7cdf2"/></linearGradient>'
+ +'<linearGradient id="bW" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e3eefc"/><stop offset="1" stop-color="#9db6e0"/></linearGradient>'
+ +'<linearGradient id="bL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9d9f2"/><stop offset="1" stop-color="#8199c9"/></linearGradient>'
+ +'<linearGradient id="warm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a5c" stop-opacity="0"/><stop offset="1" stop-color="#ff8a4c" stop-opacity=".45"/></linearGradient>'
+ +'<linearGradient id="gnd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2550"/><stop offset="1" stop-color="#0d1030"/></linearGradient>'
+ +'<linearGradient id="refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe08a" stop-opacity=".7"/><stop offset="1" stop-color="#ffe08a" stop-opacity="0"/></linearGradient>'
+ +'<filter id="bl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="16"/></filter><filter id="bs" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter></defs>'
+ +'<rect width="1600" height="900" fill="url(#skyG)"/>'+stars+'<rect width="1600" height="900" fill="url(#sunG)" class="glow"/>'
+ +'<g class="rays" fill="#fff2c0" opacity=".07">'+rays+'</g>'
+ +'<circle cx="'+CX+'" cy="'+CY+'" r="122" fill="#fff7cf" filter="url(#bs)"/><circle cx="'+CX+'" cy="'+CY+'" r="96" fill="#fffdf0"/>'
+ +'<g class="cl" fill="#ffb37a" opacity=".38" filter="url(#bl)"><ellipse cx="420" cy="560" rx="260" ry="26"/><ellipse cx="760" cy="500" rx="200" ry="20"/><ellipse cx="1000" cy="620" rx="280" ry="24"/><ellipse cx="180" cy="430" rx="190" ry="18"/><ellipse cx="1500" cy="440" rx="170" ry="16"/></g>'
+ +skyline(150,260,'#6a4f8f','.5')+skyline(110,210,'#3b3568','.85')
+ +bld(1010,560,110,'bL')+bld(1480,540,110,'bL')+bld(1120,420,115,'bW')+bld(1365,390,115,'bW')+bld(1235,240,130,'bT')
+ +'<rect x="1225" y="232" width="150" height="10" fill="#fff" stroke="#ffd98a" stroke-width="2"/><rect x="1297" y="190" width="6" height="44" fill="#e8f1ff"/><circle cx="1300" cy="188" r="4" fill="#fff"/>'
+ +'<rect x="1000" y="540" width="600" height="310" fill="url(#warm)"/>'
+ +'<rect y="840" width="1600" height="60" fill="url(#gnd)"/><rect x="1210" y="840" width="180" height="60" fill="url(#refl)" opacity=".55"/>'
+ +'<g fill="#ffd9a0" filter="url(#bs)"><circle cx="950" cy="611" r="26" opacity=".1"/><circle cx="750" cy="668" r="14" opacity=".16"/><circle cx="500" cy="741" r="40" opacity=".08"/></g>'
+ +pts+'</svg>';
+ return o}
+function scene(){if(!scene.c)scene.c=sceneSvg();return h('div',{class:'scene',innerHTML:scene.c})}
+/* ---------- views ---------- */
+function home(){const go=r=>{S.role=r;S.view='login';render()};return landing(getDesign(),{mode:'live',go})}
+function login(){const adm=S.role==='admin',u=h('input',{autocomplete:'username',autocapitalize:'none'}),p=h('input',{type:'password',autocomplete:'current-password'}),er=h('div',{class:'err'}),hp=h('div',{});u.setAttribute('autocorrect','off');u.setAttribute('spellcheck','false');
+ const showHelp=()=>{if(hp.firstChild)return;const w=h('span',{class:'help',tabindex:'0'});const tip='If you are unable to access your account or have forgotten your password, please contact the administrator for assistance. Thank you.';
+  w.append(h('button',{type:'button',class:'hb',title:tip,onclick:()=>w.classList.toggle('open')},'Need help signing in?'),h('span',{class:'tip',role:'tooltip'},tip));hp.append(w)};
+ if(!adm&&S.fails>=5)showHelp();
+ const go=async e=>{e.preventDefault();er.textContent='';if(await signin(u.value,p.value))render();else{if(!adm){S.fails++;if(S.fails>=5)showHelp()}er.textContent=(SYNC&&adm&&!SYNC.edit)?'Administrator access requires Editor permission on this shared site.':'Invalid credentials for '+(adm?'administrator or moderator':'employee')+' access.'}};
+ return heroBg(getDesign(),h('form',{class:'card0',onsubmit:go},h('button',{type:'button',class:'x',title:'Exit','aria-label':'Exit sign-in',onclick:()=>{S.view='home';render()}},'×'),h('h2',{},adm?'Administrator / Moderator Sign-in':'Employee Sign-in'),h('p',{},'Enter your credentials to open the archive.'),
+  h('label',{},'Username'),u,h('label',{},'Password'),p,er,hp,h('div',{class:'ft'},h('button',{type:'button',class:'btn ghost',onclick:()=>{S.view='home';render()}},'Back'),h('button',{class:'btn',type:'submit'},'SIGN IN'))))}
+const goTab=t=>{S.dEdit=false;S.dMsg='';S.tab=t;render()};
+function dash(){const a=isAdm(),stf=isStaff();if(S.tab==='staff'&&!can('empView'))S.tab='media';if(S.tab==='design'&&!can('design'))S.tab='media';if(S.tab==='log'&&!can('viewLog'))S.tab='media';
+ const top=h('header',{class:'top'},h('span',{class:'brand'},'Event Archive'),h('span',{class:'welcome'},'Welcome, '+S.user.name+'!',!a&&S.user.company&&h('small',{},'· '+S.user.company)),h('span',{class:'sp'}),synEl(),h('span',{class:'who'},S.user.name+' · '+(a?'Administrator':isMod()?'Moderator':'Employee')),
+  !a&&h('button',{class:'btn ghost sm',onclick:pwDlg},'Change password'),stf&&[S.tab!=='media'&&h('button',{class:'btn ghost sm',onclick:()=>goTab('media')},'Back to Archive'),S.tab!=='staff'&&can('empView')&&h('button',{class:'btn ghost sm',onclick:()=>goTab('staff')},'Manage Access'),S.tab!=='design'&&can('design')&&h('button',{class:'btn ghost sm',onclick:()=>goTab('design')},'Edit Sign-in Page'),S.tab!=='log'&&can('viewLog')&&h('button',{class:'btn ghost sm',onclick:()=>goTab('log')},'Sign-in Activity')],h('button',{class:'btn ghost sm',onclick:signout},'Sign out'));
+ return h('div',{},top,h('div',{class:'lay'},S.tab==='staff'&&can('empView')?staff():S.tab==='design'&&can('design')?designView():S.tab==='log'&&can('viewLog')?activity():[side(),mainPane(stf)]))}
+function side(){const n=id=>S.media.filter(m=>canSee(m)&&(id==='all'||m.albumId===id)).length;
+ const c=(id,t)=>h('button',{class:'chip'+(S.album===id?' on':''),onclick:()=>{S.album=id;render()}},h('span',{},t),h('span',{},n(id)));
+ return h('aside',{},h('h3',{},'Albums'),c('all','All media'),visAlbums().sort((x,y)=>x.name.localeCompare(y.name)).map(x=>c(x.id,x.name)),S.media.some(m=>canSee(m)&&!m.albumId)&&c('',"Unsorted"))}
+function mainPane(a){const al=S.albums.find(x=>x.id===S.album);const title=S.album==='all'?'All media':S.album===''?'Unsorted':al?al.name:'Album';
+ const q=h('input',{type:'search',placeholder:'Search by title',value:S.q,oninput:e=>{S.q=e.target.value;grid()}});
+ const head=h('div',{class:'mh'},h('h2',{},title),q,[
+  can('upload')&&h('button',{class:'btn sm',onclick:uploadDlg},'Upload'),can('download')&&h('button',{class:'btn ghost sm',onclick:bulkDlg},'Download'),can('albums')&&h('button',{class:'btn ghost sm',onclick:()=>ask('New album','Album name','','',async v=>{need('albums');await put('albums',{id:uid(),name:v});await refresh();render()})},'New album'),
+  al&&can('albums')&&h('button',{class:'btn ghost sm',onclick:()=>ask('Rename album','Album name',al.name,'',async v=>{need('albums');al.name=v;await put('albums',al);await refresh();render()})},'Rename'),
+  al&&can('albums')&&h('button',{class:'btn dn sm',onclick:async()=>{if(!confirm('Delete album “'+al.name+'”? Its files will move to Unsorted.'))return;need('albums');for(const m of S.media.filter(m=>m.albumId===al.id)){m.albumId='';await put('media',m)}await del('albums',al.id);S.album='all';await refresh();render()}},'Delete album')]);
+ const g=h('div',{id:'grid'});setTimeout(grid,0);return h('main',{},head,g)}
+function grid(){const a=isStaff(),g=document.getElementById('grid');if(!g)return;const q=S.q.toLowerCase();
+ const list=S.media.filter(m=>canSee(m)&&(S.album==='all'||m.albumId===S.album)&&m.title.toLowerCase().includes(q)).sort((x,y)=>y.date-x.date);
+ g.className=list.length?'grid':'';g.replaceChildren(...(list.length?list.map(m=>card(m,a)):[h('div',{class:'empty'},can('upload')?'No files here yet. Use Upload to add photos or videos.':'No files available in this view.')]))}
+function card(m,a){const vid=m.type==='video';
+ return h('article',{class:'card'},h('div',{class:'th',onclick:()=>viewer(m)},vid?(url(m)?h('video',{src:url(m)+'#t=0.1',preload:'metadata',muted:true,playsinline:''}):h('div',{class:'ph'},'Video · tap to play')):h('img',{src:url(m),alt:m.title,loading:'lazy'}),vid&&h('span',{class:'tag'},'VIDEO')),
+  h('div',{class:'meta'},h('div',{class:'t',title:m.title},m.title),h('small',{},fmt(m.size)+' · '+new Date(m.date).toLocaleDateString())),
+  h('div',{class:'row'},h('button',{class:'btn sm',onclick:()=>download(m)},'Download'),can('editMedia')&&h('button',{class:'btn ghost sm',onclick:()=>editDlg(m)},'Edit'),can('deleteMedia')&&h('button',{class:'btn dn sm',onclick:()=>rm(m)},'Delete')))}
+function viewer(m){const el=m.type==='video'?h('video',{src:url(m),controls:true,playsinline:''}):h('img',{src:url(m),alt:m.title});let c;
+ if(m.type==='video'&&!url(m))getBlob(m).then(b=>{el.src=urls[m.id]=URL.createObjectURL(b)}).catch(e=>alert('Could not load video: '+e.message));
+ c=modal(m.title,h('div',{},el,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Close'),h('button',{class:'btn',onclick:()=>download(m)},'Download'))))}
+async function rm(m){if(!confirm('Permanently delete “'+m.title+'”?'))return;need('deleteMedia');await del('media',m.id);if(SYNC&&SYNC.assets&&m.chunks)for(const c of m.chunks){try{await SYNC.assets.delete(c)}catch(e){}}if(urls[m.id])URL.revokeObjectURL(urls[m.id]);delete urls[m.id];await refresh();render()}
+function editDlg(m){const t=h('input',{value:m.title}),s=albumSelect(m.albumId);let c;
+ c=modal('Edit file',h('div',{},h('label',{},'Title'),t,h('label',{},'Album'),s,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),
+  h('button',{class:'btn',onclick:async()=>{need('editMedia');m.title=t.value.trim()||m.title;m.albumId=s.value;await put('media',m);c();await refresh();render()}},'Save changes'))),true)}
+function uploadDlg(){const f=h('input',{type:'file',multiple:true,accept:'image/*,video/*'}),s=albumSelect(S.album==='all'?'':S.album),st=h('div',{class:'err'});let c;
+ const go=async()=>{need('upload');const fs=[...f.files];if(!fs.length){st.textContent='Select at least one photo or video.';return}st.style.color='var(--mu)';
+  try{for(let i=0;i<fs.length;i++){const x=fs[i];st.textContent='Uploading '+(i+1)+' of '+fs.length+': '+x.name;
+   const ty=x.type.startsWith('video')?'video':x.type.startsWith('image')?'image':null;if(!ty||!x.size)continue;if(SYNC&&!SYNC.assets)throw new Error('Uploading requires Editor access to this site.');
+   const rec={id:uid(),albumId:s.value,title:x.name.replace(/\.[^.]+$/,''),type:ty,name:x.name,size:x.size,date:Date.now(),mime:x.type};
+   if(SYNC){rec.chunks=[];for(let o=0;o<x.size;o+=CH){st.textContent='Uploading '+(i+1)+' of '+fs.length+': '+x.name+' ('+Math.round(o/x.size*100)+'%)';rec.chunks.push((await SYNC.assets.upload(new Blob([x.slice(o,o+CH)],{type:x.type}))).id)}}else{rec.blob=x}
+   await put('media',rec)}
+   c();await refresh();render()}catch(e){st.style.color='var(--dn)';st.textContent='Upload failed: '+e.message}};
+ c=modal('Upload photos & videos',h('div',{},h('label',{},'Files (photos and videos of any length)'),f,h('label',{},'Save to album'),s,st,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),h('button',{class:'btn',onclick:go},'Upload'))),true)}
+/* ---------- bulk download by album ---------- */
+const safe=s=>s.replace(/[\\/:*?"<>|]+/g,'_').trim()||'Untitled';
+function plan(sel){const alb=Object.fromEntries(S.albums.map(a=>[a.id,a.name])),used={};
+ return S.media.filter(m=>sel==null||sel==='*'||(m.albumId||'')===sel).map(m=>{const f=safe(alb[m.albumId]||'Unsorted'),u=used[f]||(used[f]=new Set());let n=safe(m.name),i=1;const d=n.lastIndexOf('.'),b=d>0?n.slice(0,d):n,e=d>0?n.slice(d):'';
+  while(u.has(n.toLowerCase()))n=b+' ('+i+++')'+e;u.add(n.toLowerCase());return{m,f,n}})}
+async function toFolder(items,prog){const root=await window.showDirectoryPicker({mode:'readwrite'}),dirs={};
+ for(let i=0;i<items.length;i++){const{m,f,n}=items[i];prog(i+1,items.length,f+'/'+n);const d=dirs[f]||(dirs[f]=await root.getDirectoryHandle(f,{create:true}));
+  const w=await(await d.getFileHandle(n,{create:true})).createWritable();await w.write(await getBlob(m));await w.close()}}
+const crcT=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+async function crc(b){let c=-1;for(let o=0;o<b.size;o+=8388608){const u=new Uint8Array(await b.slice(o,o+8388608).arrayBuffer());for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8)}return(c^-1)>>>0}
+async function toZip(items,prog,zname){const parts=[],cd=[],enc=new TextEncoder();let off=0;
+ for(let i=0;i<items.length;i++){const{m,f,n}=items[i];prog(i+1,items.length,f+'/'+n);const bl=await getBlob(m),nm=enc.encode(f+'/'+n),c=await crc(bl),sz=bl.size;
+  if(sz>=0xFFFFFFFF||off>=0xFFFFFFFF)throw new Error('Too large for a ZIP file. Use “Save to folder” in Chrome or Edge on a computer.');
+  const dt=new Date(m.date),tm=(dt.getHours()<<11)|(dt.getMinutes()<<5)|(dt.getSeconds()>>1),dy=((dt.getFullYear()-1980)<<9)|((dt.getMonth()+1)<<5)|dt.getDate();
+  const l=new DataView(new ArrayBuffer(30));l.setUint32(0,0x04034b50,true);l.setUint16(4,20,true);l.setUint16(6,0x0800,true);l.setUint16(10,tm,true);l.setUint16(12,dy,true);l.setUint32(14,c,true);l.setUint32(18,sz,true);l.setUint32(22,sz,true);l.setUint16(26,nm.length,true);
+  const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(12,tm,true);e.setUint16(14,dy,true);e.setUint32(16,c,true);e.setUint32(20,sz,true);e.setUint32(24,sz,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);
+  parts.push(l.buffer,nm,bl);cd.push(e.buffer,nm);off+=30+nm.length+sz}
+ const cs=cd.reduce((s,p)=>s+p.byteLength,0),z=new DataView(new ArrayBuffer(22));z.setUint32(0,0x06054b50,true);z.setUint16(8,items.length,true);z.setUint16(10,items.length,true);z.setUint32(12,cs,true);z.setUint32(16,off,true);
+ await saveBlob(new Blob([...parts,...cd,z.buffer],{type:'application/zip'}),(zname||'Event-Archive')+'.zip')}
+function bulkDlg(){need('download');const st=h('div',{class:'err',style:'color:var(--mu)'}),info=h('p',{style:'margin:0'}),cnt=id=>S.media.filter(m=>(m.albumId||'')===id).length;
+ const sel=h('select',{},h('option',{value:'*'},'All albums ('+S.media.length+')'),S.albums.slice().sort((x,y)=>x.name.localeCompare(y.name)).map(a=>h('option',{value:a.id},a.name+' ('+cnt(a.id)+')')),S.media.some(m=>!m.albumId)&&h('option',{value:''},'Unsorted ('+cnt('')+')'));
+ let items=[],c;const zn=()=>sel.value==='*'?'Event-Archive':safe(sel.value===''?'Unsorted':(S.albums.find(a=>a.id===sel.value)||{name:'Album'}).name);
+ const upd=()=>{items=plan(sel.value);const tot=items.reduce((s,x)=>s+x.m.size,0);info.textContent=items.length+' files \u00b7 '+fmt(tot)+'. '+(sel.value==='*'?'Each album is saved as its own folder; files without an album go into \u201cUnsorted\u201d.':'Saved in a folder named after the selected album.')};
+ sel.onchange=()=>{st.textContent='';upd()};upd();
+ const run=async fn=>{if(!items.length){st.style.color='var(--dn)';st.textContent='There are no files in the selected album.';return}st.style.color='var(--mu)';
+  try{await fn(items,(i,n,t)=>{st.textContent='Saving '+i+' of '+n+': '+t},zn());st.textContent='Done. '+items.length+' files saved, organized by album.'}
+  catch(e){st.style.color='var(--dn)';st.textContent=e.name==='AbortError'?'Cancelled.':e.message||'Could not save. Try the ZIP option.'}};
+ c=modal('Download by album',h('div',{},h('label',{style:'margin-top:0'},'Choose which album to download'),sel,h('div',{style:'height:10px'}),info,
+  h('p',{style:'color:var(--mu);font-size:13px'},window.showDirectoryPicker?'\u201cSave to folder\u201d writes real folders to a location you choose and suits large videos.':'\u201cSave to folder\u201d is available in Chrome or Edge on a computer. ZIP works everywhere.'),st,
+  h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Close'),window.showDirectoryPicker&&h('button',{class:'btn',onclick:()=>run(toFolder)},'Save to folder'),h('button',{class:'btn ghost',onclick:()=>run(toZip)},'Download as ZIP'))),true)}
+/* passwords are stored only as hashes; they cannot be viewed */
+/* ---------- access list export (Word / PDF) ---------- */
+async function setSecret(id,pw){if(SYNC&&!SYNC.edit)return;await put('secrets',{id,pw})}
+async function accessRows(){const rows=[];for(const u of S.users.filter(x=>x.role==='employee').sort((a,b)=>(a.company||'').localeCompare(b.company||'')||a.name.localeCompare(b.name))){
+ const s=S.secrets.find(x=>x.id===u.id);let pw='Not available (set a new password to include it)';
+ if(s&&s.pw)pw=(await hash(s.pw))===u.pw?s.pw:'Changed by employee (set a new password to include it)';rows.push([u.name,u.company||'',u.username,pw])}return rows}
+const xe=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const crcU=u=>{let c=-1;for(let i=0;i<u.length;i++)c=crcT[(c^u[i])&255]^(c>>>8);return(c^-1)>>>0};
+function mkZip(files){const enc=new TextEncoder(),parts=[],cd=[];let off=0;
+ for(const[n,t]of files){const nm=enc.encode(n),d=enc.encode(t),c=crcU(d);
+  const l=new DataView(new ArrayBuffer(30));l.setUint32(0,0x04034b50,true);l.setUint16(4,20,true);l.setUint16(6,0x0800,true);l.setUint16(12,0x21,true);l.setUint32(14,c,true);l.setUint32(18,d.length,true);l.setUint32(22,d.length,true);l.setUint16(26,nm.length,true);
+  const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(14,0x21,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);
+  parts.push(l.buffer,nm,d);cd.push(e.buffer,nm);off+=30+nm.length+d.length}
+ const cs=cd.reduce((s,p)=>s+p.byteLength,0),z=new DataView(new ArrayBuffer(22));z.setUint32(0,0x06054b50,true);z.setUint16(8,files.length,true);z.setUint16(10,files.length,true);z.setUint32(12,cs,true);z.setUint32(16,off,true);
+ return new Blob([...parts,...cd,z.buffer],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})}
+function mkDocx(rows){const L=['Full name','Company','Username','Password'],NV='0B2A5B',
+ card=(r,n)=>'<w:tc><w:tcPr><w:tcW w:w="5760" w:type="dxa"/><w:tcBorders>'+['top','left','bottom','right'].map(k=>'<w:'+k+' w:val="single" w:sz="12" w:space="0" w:color="'+NV+'"/>').join('')+'</w:tcBorders><w:tcMar><w:top w:w="0" w:type="dxa"/><w:left w:w="160" w:type="dxa"/><w:right w:w="160" w:type="dxa"/></w:tcMar></w:tcPr>'
+  +'<w:p><w:pPr><w:shd w:val="clear" w:color="auto" w:fill="'+NV+'"/><w:spacing w:before="0" w:after="140"/><w:ind w:left="-160" w:right="-160" w:firstLine="160"/></w:pPr><w:r><w:rPr><w:b/><w:color w:val="FFFFFF"/><w:sz w:val="18"/></w:rPr><w:t xml:space="preserve">'+xe('EMPLOYEE ACCESS  #'+n)+'</w:t></w:r></w:p>'
+  +r.map((v,i)=>'<w:p><w:pPr><w:spacing w:before="0" w:after="120"/></w:pPr><w:r><w:rPr><w:b/><w:color w:val="5B6678"/><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">'+L[i]+': </w:t></w:r><w:r><w:rPr><w:sz w:val="20"/></w:rPr><w:t xml:space="preserve">'+xe(v)+'</w:t></w:r></w:p>').join('')+'</w:tc>',
+ gap='<w:tc><w:tcPr><w:tcW w:w="120" w:type="dxa"/></w:tcPr><w:p/></w:tc>',blank='<w:tc><w:tcPr><w:tcW w:w="5760" w:type="dxa"/></w:tcPr><w:p/></w:tc>',
+ sp='<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/><w:rPr><w:sz w:val="2"/></w:rPr></w:pPr></w:p>',
+ spacer='<w:tr><w:trPr><w:trHeight w:val="120" w:hRule="exact"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="5760" w:type="dxa"/></w:tcPr>'+sp+'</w:tc><w:tc><w:tcPr><w:tcW w:w="120" w:type="dxa"/></w:tcPr>'+sp+'</w:tc><w:tc><w:tcPr><w:tcW w:w="5760" w:type="dxa"/></w:tcPr>'+sp+'</w:tc></w:tr>';
+ let trs=[];for(let i=0;i<rows.length;i+=2)trs.push('<w:tr><w:trPr><w:cantSplit/><w:trHeight w:val="2880" w:hRule="exact"/></w:trPr>'+card(rows[i],i+1)+gap+(rows[i+1]?card(rows[i+1],i+2):blank)+'</w:tr>');
+ const t=(s,sz,b)=>'<w:p><w:pPr><w:spacing w:before="0" w:after="80"/></w:pPr><w:r><w:rPr>'+(b?'<w:b/>':'')+'<w:sz w:val="'+sz+'"/></w:rPr><w:t xml:space="preserve">'+xe(s)+'</w:t></w:r></w:p>';
+ const body=t('Employee Access List',32,true)+t('Generated '+new Date().toLocaleString()+'. CONFIDENTIAL: keep this document secure. Each card is 4 in wide by 2 in high.',16)
+  +'<w:tbl><w:tblPr><w:tblW w:w="11640" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid><w:gridCol w:w="5760"/><w:gridCol w:w="120"/><w:gridCol w:w="5760"/></w:tblGrid>'+trs.join(spacer)+'</w:tbl><w:p/><w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="360" w:right="300" w:bottom="360" w:left="300" w:header="200" w:footer="200" w:gutter="0"/></w:sectPr>';
+ return mkZip([['[Content_Types].xml','<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>'],
+  ['_rels/.rels','<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'],
+  ['word/document.xml','<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+body+'</w:body></w:document>']])}
+function mkPdf(rows){const CW=288,CH=144,GX=6,GY=6,X0=15,LW=11,VW=38,LH=11,L=['Full name','Company','Username','Password'];/* each card = 4 in x 2 in */
+ const clean=s=>String(s).replace(/[^\x20-\x7e\xa0-\xff]/g,'?'),esc=s=>s.replace(/[\\()]/g,'\\$&'),
+ wr=(s,w,m)=>{s=clean(s);const o=[];for(let i=0;i<s.length;i+=w)o.push(s.slice(i,i+w));if(o.length>m){o.length=m;o[m-1]=o[m-1].slice(0,w-3)+'...'}return o.length?o:['']};
+ const pages=[];let cur,top;const tx=(f,sz,x,y,t)=>cur.push('BT /'+f+' '+sz+' Tf '+x.toFixed(1)+' '+y.toFixed(1)+' Td ('+esc(clean(t))+') Tj ET');
+ const np=first=>{cur=[];pages.push(cur);top=774;if(first){tx('F2',15,X0,766,'Employee Access List');tx('F1',8,X0,752,'Generated '+new Date().toLocaleString()+' - CONFIDENTIAL: keep this document secure.');top=736}};
+ const card=(x,t,r,n)=>{cur.push('0.043 0.165 0.357 rg '+x+' '+(t-18)+' '+CW+' 18 re f','0.043 0.165 0.357 RG 0.8 w '+x+' '+(t-CH)+' '+CW+' '+CH+' re S','1 g');tx('F2',9,x+10,t-12.5,'EMPLOYEE ACCESS  #'+n);cur.push('0 g');
+  let y=t-32;r.forEach((v,i)=>{const ls=wr(v,VW,2);tx('F2',9,x+10,y,L[i]+':');ls.forEach((s,k)=>tx('F1',9,x+10+LW*5.4,y-k*LH,s));y-=ls.length*LH+4})};
+ np(true);let col=0,n=0;
+ for(const r of rows){if(col===0&&top-CH<18)np(false);card(X0+col*(CW+GX),top,r,++n);if(++col===2){col=0;top-=CH+GY}}
+ let out='%PDF-1.4\n';const off=[],obj=(i,b)=>{off[i]=out.length;out+=i+' 0 obj\n'+b+'\nendobj\n'},pc=pages.length;
+ obj(1,'<</Type/Catalog/Pages 2 0 R>>');obj(2,'<</Type/Pages/Kids['+pages.map((_,i)=>(5+i*2)+' 0 R').join(' ')+']/Count '+pc+'>>');
+ obj(3,'<</Type/Font/Subtype/Type1/BaseFont/Courier/Encoding/WinAnsiEncoding>>');obj(4,'<</Type/Font/Subtype/Type1/BaseFont/Courier-Bold/Encoding/WinAnsiEncoding>>');
+ pages.forEach((p,i)=>{const s=p.join('\n');obj(5+i*2,'<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Resources<</Font<</F1 3 0 R/F2 4 0 R>>>>/Contents '+(6+i*2)+' 0 R>>');obj(6+i*2,'<</Length '+s.length+'>>\nstream\n'+s+'\nendstream')});
+ const total=5+pc*2,xr=out.length;out+='xref\n0 '+total+'\n0000000000 65535 f \n';for(let i=1;i<total;i++)out+=String(off[i]).padStart(10,'0')+' 00000 n \n';out+='trailer\n<</Size '+total+'/Root 1 0 R>>\nstartxref\n'+xr+'\n%%EOF';
+ return new Blob([Uint8Array.from(out,c=>c.charCodeAt(0)&255)],{type:'application/pdf'})}
+/* ---------- import employee list (Employee Access List .docx) ---------- */
+async function inflateRaw(u8){const ds=new DecompressionStream('deflate-raw'),w=ds.writable.getWriter();w.write(u8);w.close();return new Uint8Array(await new Response(ds.readable).arrayBuffer())}
+async function docxText(buf){const u=new Uint8Array(buf),dv=new DataView(buf);let e=-1;
+ for(let i=u.length-22;i>=Math.max(0,u.length-70000);i--){if(dv.getUint32(i,true)===0x06054b50){e=i;break}}
+ if(e<0)throw new Error('This is not a valid .docx file.');
+ let p=dv.getUint32(e+16,true);const n=dv.getUint16(e+10,true);
+ for(let k=0;k<n;k++){if(dv.getUint32(p,true)!==0x02014b50)break;
+  const m=dv.getUint16(p+10,true),cs=dv.getUint32(p+20,true),nl=dv.getUint16(p+28,true),xl=dv.getUint16(p+30,true),cl=dv.getUint16(p+32,true),lo=dv.getUint32(p+42,true),
+   nm=new TextDecoder().decode(u.subarray(p+46,p+46+nl));
+  if(nm==='word/document.xml'){const ls=lo+30+dv.getUint16(lo+26,true)+dv.getUint16(lo+28,true),raw=u.subarray(ls,ls+cs),d=m===0?raw:await inflateRaw(raw);
+   return new TextDecoder().decode(d).replace(/<\/w:p>/g,'\n').replace(/<w:tab\/>/g,' ').replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'")}
+  p+=46+nl+xl+cl}
+ throw new Error('word/document.xml was not found in this file.')}
+function parseAccessList(text){const out=[],seen=new Set();
+ /* each card: EMPLOYEE ACCESS #n / Full name / Company / Username / Password */
+ const re=/Full name:\s*([\s\S]*?)\s*Company:\s*([\s\S]*?)\s*Username:\s*(\S+)\s*Password:\s*(\S+)/g;let m;
+ while((m=re.exec(text.replace(/\u00a0/g,' ')))){const r={name:m[1].replace(/\s+/g,' ').trim(),company:m[2].replace(/\s+/g,' ').trim(),username:m[3].trim().toLowerCase(),pw:m[4].trim()};
+  if(!r.name||!r.username||!r.pw||seen.has(r.username))continue;seen.add(r.username);out.push(r)}return out}
+async function importEmployees(rows,mode){/* mode: 'merge' = add new + update name/company/password of matches; 'new' = add new only */
+ let added=0,updated=0,skipped=0;
+ for(const r of rows){const ex=S.users.find(x=>x.username===r.username);
+  if(ex){if(ex.role!=='employee'||mode==='new'){skipped++;continue}
+   ex.name=r.name;ex.company=r.company;ex.pw=await hash(r.pw);ex.pwChanged=false;await put('users',ex);await setSecret(ex.id,r.pw);updated++}
+  else{const id=uid();await put('users',{id,name:r.name,company:r.company,albums:null,username:r.username,role:'employee',pw:await hash(r.pw)});await setSecret(id,r.pw);added++}}
+ return{added,updated,skipped}}
+function importDlg(){const f=h('input',{type:'file',accept:'.docx,.txt'}),st=h('div',{class:'err',style:'color:var(--mu)'}),pv=h('div',{style:'max-height:220px;overflow:auto;font-size:13px;margin-top:8px'}),
+ md=h('select',{},h('option',{value:'merge'},'Add new employees and update existing ones (name, company, password)'),h('option',{value:'new'},'Add new employees only (leave existing accounts untouched)'));
+ let rows=[],c;
+ const go=h('button',{class:'btn',disabled:true,onclick:async()=>{go.disabled=true;st.style.color='var(--mu)';st.textContent='Importing '+rows.length+' employees...';
+  try{need('empAdd');if(md.value==='merge')need('empPw');const r=await importEmployees(rows,md.value);await refresh();c();render();alert('Import complete.\n\nAdded: '+r.added+'\nUpdated: '+r.updated+'\nSkipped: '+r.skipped)}
+  catch(e){st.style.color='var(--dn)';st.textContent='Import failed: '+e.message;go.disabled=false}}},'Import');
+ f.onchange=async()=>{go.disabled=true;rows=[];pv.replaceChildren();st.style.color='var(--mu)';st.textContent='';const file=f.files[0];if(!file)return;
+  try{const t=/\.docx$/i.test(file.name)?await docxText(await file.arrayBuffer()):await file.text();rows=parseAccessList(t);
+   if(!rows.length)throw new Error('No employee cards were found. Use an Employee Access List exported from this site.');
+   const ex=rows.filter(r=>S.users.some(x=>x.username===r.username)).length,cos=new Set(rows.map(r=>r.company)).size;
+   st.textContent='Found '+rows.length+' employees in '+cos+' companies: '+(rows.length-ex)+' new, '+ex+' already have an account.';
+   pv.append(...rows.slice(0,8).map(r=>h('div',{},r.name+' \u00b7 '+r.company+' \u00b7 '+r.username)),rows.length>8&&h('div',{style:'color:var(--mu)'},'...and '+(rows.length-8)+' more'));go.disabled=false}
+  catch(e){st.style.color='var(--dn)';st.textContent=e.message}};
+ c=modal('Import employee list',h('div',{},h('p',{style:'color:var(--mu);margin:0 0 8px'},'Choose the Employee Access List (.docx). Records are merged into Employee records; passwords are saved as hashes like every other account.'),h('label',{style:'margin-top:0'},'File'),f,h('label',{},'If a username already exists'),md,st,pv,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),go)))}
+async function exportAccess(kind){try{needAdmin();const rows=await accessRows();if(!rows.length){alert('There are no employee accounts to export.');return}
+ if(!confirm('This file lists employee passwords in plain text. Store it securely and delete it when no longer needed. Continue?'))return;
+ await saveBlob(kind==='pdf'?mkPdf(rows):mkDocx(rows),'Employee-Access-List.'+kind)}catch(e){alert('Export failed: '+e.message)}}
+
+function pwDlg(){const o=h('input',{type:'password',autocomplete:'current-password'}),n=h('input',{type:'password',autocomplete:'new-password'}),n2=h('input',{type:'password',autocomplete:'new-password'}),er=h('div',{class:'err'});let c;
+ const go=async()=>{er.textContent='';if(await hash(o.value)!==S.user.pw){er.textContent='Current password is incorrect.';return}
+  if(n.value.length<6){er.textContent='New password must be at least 6 characters.';return}if(n.value!==n2.value){er.textContent='New passwords do not match.';return}
+  const old={pw:S.user.pw,ch:S.user.pwChanged};try{S.user.pw=await hash(n.value);S.user.pwChanged=true;await put('users',S.user);try{await setSecret(S.user.id,n.value)}catch(e){}c();alert('Password updated.')}
+  catch(e){S.user.pw=old.pw;S.user.pwChanged=old.ch;er.textContent='Could not save. Your account may not have permission to change its password; please ask the administrator.'}};
+ c=modal('Change password',h('div',{},h('label',{},'Current password'),o,h('label',{},'New password (6+ characters)'),n,h('label',{},'Confirm new password'),n2,er,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),h('button',{class:'btn',onclick:go},'Update password'))),true)}
+function pwView(x){return h('small',{},'Password: hidden. Use Change password to set a new one.')}
+function albumPick(sel){const all=h('input',{type:'checkbox',checked:sel==null,style:'width:auto'});
+ const boxes=[...S.albums.slice().sort((x,y)=>x.name.localeCompare(y.name)).map(a=>({id:a.id,nm:a.name})),{id:'',nm:'Unsorted'}].map(b=>({...b,cb:h('input',{type:'checkbox',checked:Array.isArray(sel)&&sel.includes(b.id),style:'width:auto'})}));
+ const sync=()=>boxes.forEach(b=>{b.cb.disabled=all.checked});all.onchange=sync;sync();
+ const row=(cb,t)=>h('label',{style:'display:flex;gap:8px;align-items:center;font-weight:400;margin:6px 0'},cb,t);
+ return{el:h('div',{style:'border:1px solid var(--br);border-radius:4px;padding:6px 12px;max-height:180px;overflow:auto;background:var(--bg)'},row(all,'All albums (including future ones)'),boxes.map(b=>row(b.cb,b.nm))),
+  get:()=>all.checked?null:boxes.filter(b=>b.cb.checked).map(b=>b.id)}}
+const accessText=x=>Array.isArray(x.albums)?(x.albums.map(id=>id===''?'Unsorted':(S.albums.find(a=>a.id===id)||{}).name).filter(Boolean).join(', ')||'None'):'All albums';
+function accessDlg(x){const co=h('input',{value:x.company||''}),pk=albumPick(Array.isArray(x.albums)?x.albums:null),er=h('div',{class:'err'});let c;
+ const go=async()=>{const v=co.value.trim(),a=pk.get();if(!v){er.textContent='Company / business name is required.';return}if(a&&!a.length){er.textContent='Select at least one album, or choose All albums.';return}
+  try{need('empEdit');x.company=v;x.albums=a;await put('users',x);c();await refresh();render()}catch(e){er.textContent=e.message}};
+ c=modal('Edit access \u00b7 '+x.name,h('div',{},h('label',{},'Company / business name'),co,h('label',{},'Albums this employee is allowed to view'),pk.el,er,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),h('button',{class:'btn',onclick:go},'Save access'))),true)}
+function albumEditor(x){const pk=albumPick(Array.isArray(x.albums)?x.albums:null),st=h('small',{style:'margin-left:10px;color:var(--mu)'});
+ const b=h('button',{class:'btn sm',onclick:async()=>{const a=pk.get();if(a&&!a.length){st.style.color='var(--dn)';st.textContent='Select at least one album, or choose All albums.';return}
+  try{need('empEdit');x.albums=a;await put('users',x);const cv=document.querySelector('[data-cv="'+x.id+'"]');if(cv)cv.textContent='Can view: '+accessText(x);st.style.color='var(--mu)';st.textContent='Saved.'}catch(e){st.style.color='var(--dn)';st.textContent=e.message}}},'Save albums');
+ return h('div',{style:'flex-basis:100%;margin-top:4px'},h('label',{style:'margin-top:0'},'Albums this employee is allowed to view (editable)'),pk.el,h('div',{style:'margin-top:8px'},b,st))}
+function permPick(sel){const cbs={},row=(k,t)=>{const cb=h('input',{type:'checkbox',checked:!!sel[k],style:'width:auto'});cbs[k]=cb;return h('label',{style:'display:flex;gap:8px;align-items:center;font-weight:400;margin:5px 0'},cb,t)};
+ const els=PERMS.map(([g,items])=>h('div',{},h('div',{class:'sec',style:'margin:8px 0 2px;border:0;padding:0'},g),items.map(([k,t])=>row(k,t))));
+ const emp=ALLP.filter(k=>k.startsWith('emp')&&k!=='empView');
+ emp.forEach(k=>{cbs[k].onchange=()=>{if(cbs[k].checked)cbs.empView.checked=true}});
+ cbs.empView.onchange=()=>{if(!cbs.empView.checked)emp.forEach(k=>{cbs[k].checked=false})};
+ const all=h('button',{type:'button',class:'btn ghost sm',onclick:()=>ALLP.forEach(k=>{cbs[k].checked=true})},'Select all'),none=h('button',{type:'button',class:'btn ghost sm',style:'margin-left:6px',onclick:()=>ALLP.forEach(k=>{cbs[k].checked=false})},'Clear all');
+ return{el:h('div',{style:'border:1px solid var(--br);border-radius:4px;padding:8px 12px;background:var(--bg);max-height:340px;overflow:auto'},h('div',{},all,none),els),get:()=>Object.fromEntries(ALLP.map(k=>[k,cbs[k].checked]))}}
+function permDlg(x){const pk=permPick(x.perms||{});let c;
+ c=modal('Moderator permissions \u00b7 '+x.name,h('div',{},h('p',{style:'margin:0 0 8px;color:var(--mu);font-size:13px'},'Choose what this moderator is allowed to do. With nothing ticked they can only view the archive.'),pk.el,h('div',{class:'ft'},h('button',{class:'btn ghost',onclick:()=>c()},'Cancel'),
+  h('button',{class:'btn',onclick:async()=>{needAdmin();x.perms=pk.get();await put('users',x);c();await refresh();render()}},'Save permissions'))),true)}
+function staff(){const a=isAdm(),emps=S.users.filter(u=>u.role==='employee'),mods=S.users.filter(u=>u.role==='moderator');
+ const ckey=x=>(x.company||'').trim().toLowerCase()||'__none',cname=x=>(x.company||'').trim()||'No company assigned';
+ const empRow=x=>h('div',{class:'ur'},h('div',{},h('b',{},x.name),h('br'),h('small',{},'Company: '+(x.company||'Not assigned')),h('br'),h('small',{'data-cv':x.id},'Can view: '+accessText(x)),h('br'),h('small',{},x.username),h('br'),pwView(x)),
+  can('empEdit')&&h('button',{class:'btn ghost sm',onclick:()=>accessDlg(x)},'Edit access'),
+  can('empPw')&&h('button',{class:'btn ghost sm',onclick:()=>ask('Change password for '+x.name,'New password (6+ characters)','','password',async v=>{if(v.length<6)throw new Error('Minimum 6 characters.');need('empPw');x.pw=await hash(v);x.pwChanged=false;await put('users',x);await setSecret(x.id,v);await refresh();render()})},'Change password'),
+  can('empRemove')&&h('button',{class:'btn dn sm',onclick:async()=>{if(!confirm('Remove access for '+x.name+'? They will no longer be able to sign in.'))return;need('empRemove');await del('users',x.id);try{await del('secrets',x.id)}catch(e){}await refresh();render()}},'Remove access'),
+  can('empEdit')&&albumEditor(x));
+ /* employee search + company grouping */
+ const box=h('div'),cnt=h('small',{style:'color:var(--mu)'}),
+  names={};emps.forEach(x=>{if(!names[ckey(x)])names[ckey(x)]=cname(x)});
+ if(S.ec&&!names[S.ec])S.ec='';
+ const keys=Object.keys(names).sort((x,y)=>x==='__none'?1:y==='__none'?-1:names[x].localeCompare(names[y]));
+ const draw=()=>{const t=S.eq.trim().toLowerCase(),list=emps.filter(x=>(!S.ec||ckey(x)===S.ec)&&(!t||[x.name,x.username,x.company].some(v=>(v||'').toLowerCase().includes(t))));
+  const gs=keys.map(k=>({k,items:list.filter(x=>ckey(x)===k).sort((x,y)=>x.name.localeCompare(y.name))})).filter(g=>g.items.length);
+  cnt.textContent='Showing '+list.length+' of '+emps.length+' employee'+(emps.length===1?'':'s')+' in '+gs.length+' '+(gs.length===1?'company':'companies');
+  box.replaceChildren(...(gs.length?gs.map(g=>h('details',{open:true,style:'margin-top:10px'},h('summary',{style:'cursor:pointer;font:600 16px Georgia,serif;padding:6px 0'},names[g.k]+' ('+g.items.length+')'),g.items.map(empRow))):[h('p',{style:'color:var(--mu)'},emps.length?'No employees match your search.':'No employees yet.')]))};
+ const sq=h('input',{type:'search',placeholder:'Search by name, username or company',value:S.eq,style:'flex:1;min-width:200px',oninput:e=>{S.eq=e.target.value;draw()}}),
+  sc=h('select',{style:'width:auto;min-width:180px',onchange:e=>{S.ec=e.target.value;draw()}},h('option',{value:''},'All companies'),keys.map(k=>h('option',{value:k,selected:S.ec===k},names[k])));
+ draw();
+ /* add employee */
+ let addPn=null;if(can('empAdd')){const n=h('input'),co=h('input'),pk=albumPick(null),u=h('input'),p=h('input',{type:'password'}),er=h('div',{class:'err'});
+  const add=async e=>{e.preventDefault();need('empAdd');const un=u.value.trim().toLowerCase();er.textContent='';
+   if(!n.value.trim()||!co.value.trim()||!un||p.value.length<6){er.textContent='Name, company / business name, username and a password of 6+ characters are required.';return}
+   const al=pk.get();if(al&&!al.length){er.textContent='Select at least one album, or choose All albums.';return}
+   if(S.users.some(x=>x.username===un)){er.textContent='That username already exists.';return}
+   const nid=uid();await put('users',{id:nid,name:n.value.trim(),company:co.value.trim(),albums:al,username:un,role:'employee',pw:await hash(p.value)});await setSecret(nid,p.value);await refresh();render()};
+  addPn=h('div',{class:'pn'},h('h3',{},'Add employee access'),h('p',{style:'color:var(--mu);margin:0'},'Employees can later change their own password; you can always set a new one.'),
+   h('form',{onsubmit:add},h('label',{},'Full name'),n,h('label',{},'Company / business name'),co,h('label',{},'Albums this company may view on the main dashboard'),pk.el,h('label',{},'Username'),u,h('label',{},'Initial password (6+ characters)'),p,er,h('div',{class:'ft'},h('button',{class:'btn',type:'submit'},'Add employee'))))}
+ /* moderators (administrator only) */
+ let modPn=null;if(a){const mn=h('input'),mu=h('input'),mp=h('input',{type:'password'}),mpk=permPick({}),mer=h('div',{class:'err'});
+  const addMod=async e=>{e.preventDefault();needAdmin();const un=mu.value.trim().toLowerCase();mer.textContent='';
+   if(!mn.value.trim()||un.length<3||mp.value.length<6){mer.textContent='Name, a username (3+ characters) and a password of 6+ characters are required.';return}
+   if(S.users.some(x=>x.username===un)){mer.textContent='That username already exists.';return}
+   const nid=uid();await put('users',{id:nid,name:mn.value.trim(),username:un,role:'moderator',perms:mpk.get(),pw:await hash(mp.value)});await setSecret(nid,mp.value);await refresh();render()};
+  modPn=h('div',{class:'pn'},h('h3',{},'Moderator access ('+mods.length+')'),h('p',{style:'color:var(--mu);margin:0'},'Moderators sign in through Admin Access (the \u22ee menu) to monitor the website. You choose exactly which features each moderator may use. Only you can create moderators or change their permissions.'),
+   h('form',{onsubmit:addMod},h('label',{},'Full name'),mn,h('label',{},'Username'),mu,h('label',{},'Initial password (6+ characters)'),mp,h('label',{},'What this moderator may access'),mpk.el,mer,h('div',{class:'ft'},h('button',{class:'btn',type:'submit'},'Add moderator'))),
+   mods.length?h('div',{style:'margin-top:14px'},mods.map(x=>h('div',{class:'ur'},h('div',{},h('b',{},x.name),h('br'),h('small',{},x.username),h('br'),h('small',{},'Can: '+permText(x)),h('br'),pwView(x)),
+    h('button',{class:'btn ghost sm',onclick:()=>permDlg(x)},'Edit permissions'),
+    h('button',{class:'btn ghost sm',onclick:()=>ask('Change password for '+x.name,'New password (6+ characters)','','password',async v=>{if(v.length<6)throw new Error('Minimum 6 characters.');needAdmin();x.pw=await hash(v);await put('users',x);await setSecret(x.id,v);await refresh();render()})},'Change password'),
+    h('button',{class:'btn dn sm',onclick:async()=>{if(!confirm('Remove moderator '+x.name+'? They will no longer be able to sign in.'))return;needAdmin();await del('users',x.id);await refresh();render()}},'Remove moderator')))):h('p',{style:'color:var(--mu);margin:12px 0 0'},'No moderators yet.'))}
+ return h('main',{style:'max-width:900px;margin:0 auto;width:100%'},addPn,
+  h('div',{class:'pn'},h('h3',{},'Employee records ('+emps.length+')'),can('empAdd')&&h('div',{style:'margin:4px 0 8px'},h('button',{class:'btn sm',onclick:importDlg},'Import employee list (.docx)')),h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px'},sq,sc),cnt,box),
+  modPn,
+  a&&h('div',{class:'pn'},h('h3',{},'Administrator account'),h('button',{class:'btn ghost sm',style:'margin:0 8px 8px 0',onclick:()=>ask('Change admin username','New username (3+ characters)',S.user.username,'',async v=>{v=v.toLowerCase();if(v.length<3)throw new Error('Minimum 3 characters.');if(S.users.some(x=>x.username===v&&x.id!==S.user.id))throw new Error('That username is already taken.');needAdmin();S.user.username=v;await put('users',S.user);await refresh();render()})},'Change my username'),h('button',{class:'btn ghost sm',onclick:()=>ask('Change admin password','New password (6+ characters)','','password',async v=>{if(v.length<6)throw new Error('Minimum 6 characters.');needAdmin();S.user.pw=await hash(v);await put('users',S.user);await refresh()})},'Change my password'),h('div',{style:'margin-top:10px'},h('button',{class:'btn sm',onclick:()=>exportAccess('docx')},'Download access list (Word)'),h('button',{class:'btn sm',style:'margin-left:8px',onclick:()=>exportAccess('pdf')},'Download access list (PDF)')),h('p',{style:'color:var(--mu);font-size:13px;margin:8px 0 0'},'Each employee gets a 4 in \u00d7 2 in boxed card showing full name, company, username and password. Passwords appear only for accounts whose password you set or reset after this update; others show how to include them.')))}
+/* ---------- sign-in page designer ---------- */
+const F={seg:"'Segoe UI',Helvetica,Arial,sans-serif",geo:'Georgia,"Times New Roman",serif'};
+const FONTS=[['Segoe UI',F.seg],['Georgia',F.geo],['Times New Roman','"Times New Roman",Times,serif'],['Arial','Arial,Helvetica,sans-serif'],['Verdana','Verdana,Geneva,sans-serif'],['Trebuchet MS','"Trebuchet MS",Helvetica,sans-serif'],['Tahoma','Tahoma,Geneva,sans-serif'],['Palatino','"Palatino Linotype",Palatino,serif'],['Garamond','Garamond,Baskerville,serif'],['Courier New','"Courier New",Courier,monospace'],['Impact','Impact,Charcoal,sans-serif'],['Brush Script','"Brush Script MT","Segoe Script",cursive'],['Comic Sans','"Comic Sans MS","Comic Neue",cursive'],['System UI','system-ui,sans-serif']];
+const EBASE=()=>({kind:'text',name:'Text box',text:'New text box',font:F.seg,size:24,color:'#ffffff',bold:false,italic:false,ul:false,upper:false,align:'center',ls:0,lh:1.4,sh:true,bgc:'#000000',bga:0,bc:'#ffffff',bw:0,rad:0,py:0,px:0,mw:600,mt:16,x:0,y:0,op:100,vis:true});
+const mkEl=(id,kind,name,o)=>({...EBASE(),id,kind,name,...o});
+const DEFAULT=()=>({bg:{type:'scene',c1:'#0b2a5b',c2:'#173f80',angle:160,img:'',dark:0},n:0,els:[
+ mkEl('title','title','Title',{text:'WELCOME TO THE COMPANY EVENTS ARCHIVE',font:F.geo,size:42,bold:true,ls:2,lh:1.25,mw:820,mt:0,align:'center'}),
+ mkEl('sub','sub','Subtitle',{text:'Explore our collection of memorable moments, significant milestones, and highlights from company events, celebrations, and corporate gatherings.',size:16,italic:true,op:88,mw:620,mt:16,lh:1.5}),
+ mkEl('btn','btn','SIGN IN button',{text:'SIGN IN',size:15,bold:true,color:'#0b2a5b',bgc:'#ffffff',bga:100,bc:'#ffffff',bw:1,rad:4,py:12,px:24,mw:400,mt:30,lh:1.2,sh:false}),
+ mkEl('note','note','Footnote',{text:'Authorized personnel only',size:13,op:60,mt:40})]});
+function getDesign(){const d=DEFAULT(),r=S.settings.find(x=>x.id==='design');
+ if(r&&r.json){try{const v=JSON.parse(r.json);d.bg=Object.assign(d.bg,v.bg);d.n=v.n||0;if(Array.isArray(v.els))d.els=v.els.map(e=>Object.assign({},DEFAULT().els.find(x=>x.id===e.id)||EBASE(),e))}catch(e){}}return d}
+async function saveDesign(c){need('design');await put('settings',{id:'design',json:JSON.stringify(c)});await refresh()}
+const rgba=(hx,a)=>{const v=parseInt(hx.slice(1),16);return'rgba('+(v>>16&255)+','+(v>>8&255)+','+(v&255)+','+a+')'};
+function styleEl(n,e){Object.assign(n.style,{fontFamily:e.font,fontSize:'calc('+e.size+'px*var(--k,1))',color:e.color,fontWeight:e.bold?'700':'400',fontStyle:e.italic?'italic':'normal',textDecoration:e.ul?'underline':'none',textTransform:e.upper?'uppercase':'none',textAlign:e.align,letterSpacing:e.ls+'px',lineHeight:String(e.lh),background:rgba(e.bgc,e.bga/100),opacity:String(e.op/100),padding:e.py+'px '+e.px+'px',borderRadius:e.rad+'px',border:e.bw?e.bw+'px solid '+e.bc:'0',maxWidth:'min('+e.mw+'px,100%)',margin:e.mt+'px 0 0',transform:'translate('+e.x+'px,'+e.y+'px)',whiteSpace:'pre-wrap',overflowWrap:'anywhere'})}
+function heroBg(cfg,...kids){const hr=h('section',{class:'hero'}),b=cfg.bg;
+ if(b.type==='scene')hr.append(scene());
+ else if(b.type==='solid')hr.style.background=b.c1;
+ else if(b.type==='gradient')hr.style.background='linear-gradient('+b.angle+'deg,'+b.c1+','+b.c2+')';
+ else if(b.type==='image'&&b.img){hr.style.backgroundColor=b.c1;hr.style.backgroundImage='url("'+b.img+'")';hr.style.backgroundSize='cover';hr.style.backgroundPosition='center'}
+ if(b.dark>0)hr.append(h('div',{class:'ovl',style:'background:rgba(0,0,0,'+b.dark/100+')'}));
+ kids.flat().forEach(c=>{if(c)hr.append(c)});return hr}
+function landing(cfg,o){const live=o.mode==='live',hr=heroBg(cfg);
+ if(live){const mn=h('div',{class:'menu',hidden:true},h('button',{onclick:()=>o.go('admin')},'Admin Access'));hr.append(h('button',{class:'dots',title:'More','aria-label':'More options',onclick:()=>{mn.hidden=!mn.hidden}},'\u22ee'),mn)}
+ else hr.append(h('span',{class:'dots',style:'pointer-events:none'},'\u22ee'));
+ const st=h('div',{class:'stack'});
+ cfg.els.forEach(e=>{if(!e.vis&&o.mode!=='edit')return;const n=h({title:'h1',sub:'p',btn:'button',note:'small'}[e.kind]||'div',{});
+  if(e.kind==='btn'){n.type='button';n.className='btn'}n.textContent=e.text;styleEl(n,e);if(!e.sh||e.kind==='btn')n.classList.add('nosh');
+  if(o.mode==='edit'){n.classList.add('ed');if(!e.vis)n.classList.add('hid');n.dataset.id=e.id;if(o.sel===e.id)n.classList.add('sel');o.hook(n,e)}
+  else if(live&&e.kind==='btn')n.onclick=()=>o.go('employee');st.append(n)});
+ hr.append(st);if(o.mode==='edit')hr.onclick=ev=>{if(!ev.target.closest('.ed'))o.pick('bg')};return hr}
+function designView(){const ed=S.dEdit,pv=h('div',{class:'pv'}),panel=h('div',{class:'pn tools'}),msg=h('span',{style:'color:var(--mu);font-size:13px'},S.dMsg);
+ const pick=id=>{S.dSel=id;pv.querySelectorAll('.ed').forEach(n=>n.classList.toggle('sel',n.dataset.id===id));buildPanel()};
+ const hook=(n,e)=>{n.onpointerdown=ev=>{ev.preventDefault();pick(e.id);n.setPointerCapture(ev.pointerId);const sx=ev.clientX,sy=ev.clientY,ox=e.x,oy=e.y;
+   n.onpointermove=m=>{e.x=Math.round(ox+m.clientX-sx);e.y=Math.round(oy+m.clientY-sy);n.style.transform='translate('+e.x+'px,'+e.y+'px)'};n.onpointerup=()=>{n.onpointermove=n.onpointerup=null;buildPanel()}}};
+ const refreshPv=()=>pv.replaceChildren(landing(S.dDraft,{mode:'edit',sel:S.dSel,pick,hook}));
+ const fld=(l,...c)=>h('div',{class:'fr'},h('label',{},l),...c);
+ const rng=(l,o,k,min,max,step,unit)=>{const r=h('input',{type:'range',min,max,step:step||1,value:o[k]}),n=h('input',{type:'number',class:'nm',min,max,step:step||1,value:o[k]});
+  const set=v=>{v=+v;if(v!==v)return;o[k]=v;r.value=v;n.value=v;refreshPv()};r.oninput=()=>set(r.value);n.oninput=()=>set(n.value);return fld(l+(unit?' ('+unit+')':''),h('div',{class:'rg'},r,n))};
+ const col=(l,o,k)=>{const i=h('input',{type:'color',value:o[k]});i.oninput=()=>{o[k]=i.value;refreshPv()};return fld(l,i)};
+ const dd=(l,o,k,opts,cb)=>{const x=h('select',{},opts.map(([v,t])=>h('option',{value:v,selected:o[k]===v},t)));x.onchange=()=>{o[k]=x.value;refreshPv();cb&&cb()};return fld(l,x)};
+ const tg=(o,k,t,ti)=>{const b=h('button',{type:'button',class:'tg'+(o[k]?' on':''),title:ti,onclick:()=>{o[k]=!o[k];b.classList.toggle('on',o[k]);refreshPv()}},t);return b};
+ const sec=t=>h('div',{class:'sec'},t);
+ function bgCtl(d){const b=d.bg,st=h('small',{style:'color:var(--mu)'});
+  const f=h('input',{type:'file',accept:'image/*'});f.onchange=()=>{const fl=f.files[0];if(!fl)return;const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{let out=null;
+    for(const[w,q]of[[1280,.7],[960,.55],[720,.45]]){const sc=Math.min(1,w/im.width),cv=document.createElement('canvas');cv.width=Math.round(im.width*sc);cv.height=Math.round(im.height*sc);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);const u=cv.toDataURL('image/jpeg',q);if(!SYNC||u.length<230000){out=u;break}}
+    if(!out){st.textContent='That image is too large for shared storage. Try a smaller image.';return}b.img=out;b.type='image';refreshPv();buildPanel()};im.src=rd.result};rd.readAsDataURL(fl)};
+  return[dd('Background type',b,'type',[['scene','Cinematic sunrise'],['gradient','Gradient'],['solid','Solid color'],['image','Picture']],buildPanel),
+   b.type!=='scene'&&col(b.type==='gradient'?'Color 1':'Color',b,'c1'),b.type==='gradient'&&col('Color 2',b,'c2'),b.type==='gradient'&&rng('Angle',b,'angle',0,360,1,'\u00b0'),
+   b.type==='image'&&fld('Upload picture',f,st,b.img&&h('button',{type:'button',class:'btn ghost sm',style:'margin-top:6px',onclick:()=>{b.img='';refreshPv();buildPanel()}},'Remove picture')),
+   rng('Darken overlay',b,'dark',0,85,1,'%')]}
+ function elCtl(d,e){const t=h('textarea',{rows:3,style:'width:100%;padding:8px;border:1px solid var(--br);border-radius:4px;background:var(--bg);resize:vertical'});t.value=e.text;t.oninput=()=>{e.text=t.value;refreshPv()};
+  const al=h('div',{class:'tgs'},[['left','Left'],['center','Center'],['right','Right']].map(([v,l])=>h('button',{type:'button',class:'tg'+(e.align===v?' on':''),onclick:()=>{e.align=v;refreshPv();buildPanel()}},l)));
+  const nudge=h('div',{class:'tgs'},[['\u2190',-5,0],['\u2192',5,0],['\u2191',0,-5],['\u2193',0,5]].map(([l,dx,dy])=>h('button',{type:'button',class:'tg',onclick:()=>{e.x+=dx;e.y+=dy;refreshPv();buildPanel()}},l)),h('button',{type:'button',class:'tg',onclick:()=>{e.x=0;e.y=0;refreshPv();buildPanel()}},'Reset position'));
+  const mv=dir=>{const i=d.els.indexOf(e),j=i+dir;if(j<0||j>=d.els.length)return;[d.els[i],d.els[j]]=[d.els[j],d.els[i]];refreshPv()};
+  const vis=h('input',{type:'checkbox',checked:e.vis,style:'width:auto'});vis.onchange=()=>{e.vis=vis.checked;refreshPv()};
+  return[fld('Text',t),sec('Text'),dd('Font',e,'font',FONTS.map(([n,v])=>[v,n])),rng('Font size',e,'size',8,120,1,'px'),col('Text color',e,'color'),
+   fld('Style',h('div',{class:'tgs'},tg(e,'bold','B','Bold'),tg(e,'italic','I','Italic'),tg(e,'ul','U','Underline'),tg(e,'upper','AA','Uppercase'),tg(e,'sh','Shadow','Text shadow'))),fld('Align',al),
+   rng('Letter spacing',e,'ls',-2,20,.5,'px'),rng('Line height',e,'lh',.8,2.5,.05),
+   sec('Box & background'),col('Background color',e,'bgc'),rng('Background opacity',e,'bga',0,100,1,'%'),col('Border color',e,'bc'),rng('Border width',e,'bw',0,10,1,'px'),rng('Corner radius',e,'rad',0,60,1,'px'),
+   rng('Padding top/bottom',e,'py',0,80,1,'px'),rng('Padding left/right',e,'px',0,120,1,'px'),rng('Max width',e,'mw',80,1200,10,'px'),rng('Opacity',e,'op',0,100,1,'%'),
+   sec('Position'),rng('Space above',e,'mt',0,300,1,'px'),rng('Horizontal position',e,'x',-700,700,1,'px'),rng('Vertical position',e,'y',-500,500,1,'px'),fld('Nudge (or drag it in the preview)',nudge),
+   sec('Arrange'),h('div',{class:'tgs'},h('button',{type:'button',class:'tg',onclick:()=>{mv(-1);buildPanel()}},'\u2191 Move earlier'),h('button',{type:'button',class:'tg',onclick:()=>{mv(1);buildPanel()}},'\u2193 Move later')),
+   e.kind!=='btn'&&h('label',{style:'display:flex;gap:8px;align-items:center;font-weight:400'},vis,'Visible on the sign-in page'),
+   e.custom&&h('div',{style:'margin-top:10px'},h('button',{type:'button',class:'btn dn sm',onclick:()=>{if(!confirm('Delete this text box?'))return;d.els=d.els.filter(x=>x!==e);S.dSel='bg';refreshPv();buildPanel()}},'Delete text box'))]}
+ function buildPanel(){if(!ed)return;const d=S.dDraft,e=d.els.find(x=>x.id===S.dSel);if(!e&&S.dSel!=='bg')S.dSel='bg';
+  const lay=h('div',{class:'lyrs'},[['bg','Background'],...d.els.map(x=>[x.id,x.name])].map(([id,t])=>h('button',{type:'button',class:'lyr'+(S.dSel===id?' on':''),onclick:()=>pick(id)},t)));
+  panel.replaceChildren(h('h3',{},'Tools'),lay,...(S.dSel==='bg'?bgCtl(d):elCtl(d,e)))}
+ const bar=ed?[h('button',{class:'btn',onclick:async()=>{try{await saveDesign(S.dDraft);S.dEdit=false;S.dMsg='Saved. The sign-in page now shows your design. Press Edit to change it again.';render()}catch(e){alert('Could not save: '+e.message)}}},'Save'),
+   h('button',{class:'btn ghost',onclick:()=>{S.dEdit=false;S.dMsg='Changes discarded.';render()}},'Cancel'),
+   h('button',{class:'btn ghost',onclick:()=>{const d=S.dDraft;d.n++;const id='t'+d.n;d.els.push(mkEl(id,'text','Text box '+d.n,{custom:true}));S.dSel=id;refreshPv();buildPanel()}},'+ Add text box'),
+   h('button',{class:'btn dn',onclick:()=>{if(!confirm('Reset the sign-in page to the original design? Nothing is saved until you press Save.'))return;S.dDraft=DEFAULT();S.dSel='title';refreshPv();buildPanel()}},'Reset to default')]
+  :[h('button',{class:'btn',onclick:()=>{S.dDraft=JSON.parse(JSON.stringify(getDesign()));S.dEdit=true;S.dSel='title';S.dMsg='';render()}},'Edit'),msg];
+ if(ed){refreshPv();buildPanel()}else pv.append(landing(getDesign(),{mode:'view'}));
+ return h('main',{style:'max-width:1180px;margin:0 auto;width:100%'},
+  h('div',{class:'pn'},h('h3',{},'Sign-in page designer'),h('p',{style:'color:var(--mu);margin:0 0 12px'},ed?'Click any item in the preview to select it, then drag it or use the tools. Nothing changes for employees until you press Save.':'This is how the sign-in page looks now. Press Edit to change the text, fonts, colors, spacing, position and background.'),h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;align-items:center'},bar)),
+  ed?h('div',{class:'dz'},pv,panel):pv)}
+/* ---------- sign-in activity (who signed in, and when) ---------- */
+function devInfo(){const u=navigator.userAgent,os=/Android/.test(u)?'Android':/iPhone|iPod/.test(u)?'iPhone':/iPad/.test(u)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)?'iPad':/Windows/.test(u)?'Windows':/Mac OS/.test(u)?'Mac':/CrOS/.test(u)?'ChromeOS':/Linux/.test(u)?'Linux':'Device',
+ br=/EdgA?\//.test(u)?'Edge':/OPR\/|Opera/.test(u)?'Opera':/SamsungBrowser/.test(u)?'Samsung Internet':/Firefox|FxiOS/.test(u)?'Firefox':/CriOS|Chrome\//.test(u)?'Chrome':/Safari\//.test(u)?'Safari':'Browser';return os+' \u00b7 '+br}
+async function logSignin(x){const e={t:Date.now(),uid:x.id,name:x.name,username:x.username,role:x.role,company:x.company||'',dev:devInfo()};
+ try{if(SYNC){if(!SYNC.vid)return;const r=SYNC.db.collection('logins').doc(SYNC.vid);let o=[];try{const d=await r.get();if(d.exists)o=d.data().entries||[]}catch(_){}await r.set({entries:[e,...o].slice(0,100)})}
+ else{const r=S.settings.find(y=>y.id==='loginlog')||{id:'loginlog',entries:[]};r.entries=[e,...(r.entries||[])].slice(0,200);await put('settings',r)}}catch(_){}}
+const logRows=()=>(SYNC?S.logins.flatMap(d=>d.entries||[]):((S.settings.find(y=>y.id==='loginlog')||{}).entries||[])).slice().sort((a,b)=>b.t-a.t);
+const tstr=t=>{try{return new Date(t).toLocaleString([],{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})}catch(e){return new Date(t).toString()}};
+async function clearLog(){if(!confirm('Clear the whole sign-in log for everyone? This cannot be undone.'))return;
+ try{needAdmin();if(SYNC){for(const d of S.logins.slice())await del('logins',d.id)}else{const r=S.settings.find(y=>y.id==='loginlog');if(r){r.entries=[];await put('settings',r)}}render()}catch(e){alert('Could not clear the log: '+e.message)}}
+function activity(){let rows=[];const box=h('div',{class:'tbw'}),cnt=h('small',{style:'color:var(--mu)'}),ROLE={admin:'Administrator',moderator:'Moderator',employee:'Employee'};
+ const draw=()=>{rows=logRows();const t=S.lq.trim().toLowerCase(),l=rows.filter(r=>(!S.lr||r.role===S.lr)&&(!t||[r.name,r.username,r.company,r.dev].some(v=>(v||'').toLowerCase().includes(t))));
+  cnt.textContent='Showing '+Math.min(l.length,300)+' of '+rows.length+' recorded sign-ins'+(l.length>300?' (latest 300 listed; Export CSV has all)':'');
+  box.replaceChildren(l.length?h('table',{class:'lg'},h('thead',{},h('tr',{},['Full name','Username','Role','Company','Signed in','Device'].map(c=>h('th',{},c)))),h('tbody',{},l.slice(0,300).map(r=>h('tr',{},h('td',{},h('b',{},r.name||'')),h('td',{},r.username||''),h('td',{},h('span',{class:'rl'},ROLE[r.role]||r.role||'')),h('td',{},r.company||'\u2014'),h('td',{},tstr(r.t)),h('td',{},r.dev||'\u2014'))))):h('p',{style:'color:var(--mu)'},rows.length?'No sign-ins match your search.':'No sign-ins recorded yet. New sign-ins appear here instantly on every device.'))};
+ activity.draw=draw;
+ const sq=h('input',{type:'search',placeholder:'Search name, username or company',value:S.lq,style:'flex:1;min-width:200px',oninput:e=>{S.lq=e.target.value;draw()}}),
+  sr=h('select',{style:'width:auto;min-width:150px',onchange:e=>{S.lr=e.target.value;draw()}},[['','All roles'],['admin','Administrator'],['moderator','Moderator'],['employee','Employee']].map(([v,t])=>h('option',{value:v,selected:S.lr===v},t)));
+ const csv=()=>{const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';saveBlob(new Blob(['\ufeff'+['Full name,Username,Role,Company,Signed in,Device'].concat(rows.map(r=>[r.name,r.username,ROLE[r.role]||r.role,r.company,tstr(r.t),r.dev].map(q).join(','))).join('\r\n')],{type:'text/csv'}),'Sign-in-activity.csv').catch(()=>{})};
+ draw();
+ return h('main',{style:'max-width:1000px;margin:0 auto;width:100%'},h('div',{class:'pn'},h('h3',{},'Sign-in activity'),h('p',{style:'color:var(--mu);margin:0 0 10px'},'Who signed in, with full name, username and the exact date and time. This list updates live on every device.'+(SYNC?' Employee sign-ins are recorded when the employee\u2019s device may save shared data (Contributor access to this site); administrator and moderator sign-ins are always recorded.':'')),
+  h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px'},sq,sr,h('button',{class:'btn ghost sm',onclick:csv},'Export CSV'),isAdm()&&h('button',{class:'btn dn sm',onclick:clearLog},'Clear log')),cnt,box))}
+/* ---------- shared live sync (desktop, Android, iOS) ---------- */
+const SY={st:'re',last:0,unsub:[],ok:0,bk:0,dirty:false};
+const SYL={on:'Live sync',re:'Reconnecting\u2026',off:'Offline',loc:'This device only'};
+function paintSt(e){const k=SYNC?SY.st:'loc';e.className='syn '+(k==='loc'?'off':k);e.replaceChildren(h('i'),SYL[k])}
+function synEl(){const e=h('span',{id:'syn',title:SYNC?'Changes sync instantly across all devices':'Not connected to shared storage: data stays on this device only'});paintSt(e);return e}
+function setSt(k){SY.st=k;const e=document.getElementById('syn');if(e)paintSt(e)}
+async function initSync(){try{if(!window.claude||!window.claude.use)return null;const[d,a,u]=await Promise.all([window.claude.use('db'),window.claude.use('assets'),window.claude.use('user')]);if(!d)return null;let edit=false,me=null,vid=null;try{edit=!!(u&&await u.canEdit())}catch(e){}try{const m=u&&await u.me();me=(m&&m.id)||null}catch(e){}try{vid=u&&await u.id()}catch(e){}return{db:d,assets:a,edit,me,vid}}catch(e){return null}}
+const NSET=()=>['users','albums','media','settings'].concat(SYNC.edit?['secrets','logins']:[]),dr=q=>q.docs.map(d=>({...d.data(),id:d.id}));
+/* one-shot read of every collection: at start, and whenever the phone or tab wakes up */
+async function pull(){const ns=NSET(),r=await Promise.all(ns.map(n=>SYNC.db.collection(n).get().then(q=>[n,dr(q)],()=>null)));let ok=0;r.forEach(x=>{if(x){S[x[0]]=x[1];ok++}});if(ok)SY.last=Date.now();return ok===ns.length?2:ok?1:0}
+function listen(){SY.unsub.forEach(f=>{try{f()}catch(e){}});SY.unsub=NSET().map(n=>SYNC.db.collection(n).onSnapshot(q=>{S[n]=dr(q);SY.last=Date.now();SY.bk=0;if(!q.metadata.fromCache)setSt('on');changed(n)},
+ e=>{if(e&&e.code==='revoked'){setSt('off');return}setSt('re');clearTimeout(SY.rt);SY.rt=setTimeout(listen,Math.min(30000,1500*Math.pow(2,SY.bk++)))}))}
+const sig=()=>SYNC?JSON.stringify(NSET().map(n=>S[n])):'';
+let wk=0;async function wake(){if(!SYNC||document.hidden||Date.now()-wk<3000)return;wk=Date.now();try{const b=sig(),ok=await pull();setSt(ok?'on':'re');if(ok&&sig()!==b)changed('*')}catch(e){setSt('re')}}
+['visibilitychange','focus','pageshow','online'].forEach(ev=>addEventListener(ev,()=>{if(ev==='online'||!document.hidden)wake()}));
+addEventListener('offline',()=>{if(SYNC)setSt('re')});
+setInterval(()=>{if(SYNC&&!document.hidden&&Date.now()-SY.last>40000)wake()},15000);
+/* local (this-browser) mode: keep other tabs of the same browser in step */
+function ping(){try{localStorage.setItem('ea-ping',String(Date.now()))}catch(e){}}
+addEventListener('storage',async e=>{if(e.key!=='ea-ping'||SYNC||!db)return;try{await refresh();changed('*')}catch(_){}});
+/* redraw only what changed, never while the person is typing or a dialog is open (keeps the phone keyboard and forms intact) */
+const busy=()=>!!document.querySelector('.ov')||S.dEdit||/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'');
+function changed(n){clearTimeout(SY.q);SY.q=setTimeout(()=>refreshUI(n),250)}
+function unlock(){if(!document.querySelector('.ov'))document.documentElement.classList.remove('lock');setTimeout(()=>{if(SY.dirty&&!busy()){SY.dirty=false;refreshUI('full')}},300)}
+document.addEventListener('focusout',()=>setTimeout(()=>{if(SY.dirty&&!busy()){SY.dirty=false;refreshUI('full')}},700));
+function refreshUI(n){const y=window.scrollY;
+ if(S.view==='home'){if(n!=='logins'&&n!=='secrets')render();return}
+ if(S.view!=='dash'||!S.user)return;
+ let chg=false;
+ if(S.users.length){const u=S.users.find(z=>z.id===S.user.id);
+  if(!u){if(SY.gone){SY.gone=0;signout();return}SY.gone=1;setTimeout(()=>refreshUI('users'),2500);return}
+  SY.gone=0;chg=JSON.stringify(u)!==JSON.stringify(S.user);S.user=u}
+ const T=S.tab,rel={media:['media','albums'],staff:['users','albums','secrets'],design:['settings']}[T]||[];
+ if(T==='log'){if((n==='logins'||n==='*'||n==='full')&&activity.draw)activity.draw();if(!chg)return}
+ else if(T==='media'&&(n==='media'||n==='*')&&!chg){grid();const a=document.querySelector('aside');if(a)a.replaceWith(side());return}
+ else if(!chg&&n!=='full'&&n!=='*'&&!rel.includes(n))return;
+ if(busy()){SY.dirty=true;return}
+ render();window.scrollTo(0,y)}
+/* ---------- default administrator (no setup screen) ---------- */
+const DEF_ADMIN={username:'admin',password:'Admin@12345',name:'Administrator'};
+async function seedAdmin(){if(S.users.some(u=>u.role==='admin'))return;if(SYNC&&(!SYNC.edit||SY.ok!==2))return;
+ try{await put('users',{id:'admin-default',name:DEF_ADMIN.name,username:DEF_ADMIN.username,role:'admin',pw:await hash(DEF_ADMIN.password)})}catch(e){}}
+/* ---------- boot ---------- */
+function render(){app.replaceChildren(S.view==='dash'&&S.user?dash():S.view==='login'?login():home())}
+async function boot(){try{SYNC=await initSync();
+ if(SYNC){let ok=0;for(let i=0;i<3&&!ok;i++){try{ok=await pull()}catch(e){}if(!ok)await new Promise(r=>setTimeout(r,900*(i+1)))}
+  if(!ok)throw new Error('offline');SY.ok=ok;setSt('on');listen()}
+ else{db=await open();await refresh()}
+ await seedAdmin();
+ let id=null;try{id=sessionStorage.getItem('uid')}catch(e){}
+ const x=S.users.find(u=>u.id===id);if(x){S.user=x;S.view='dash'}render()}
+ catch(e){app.replaceChildren(h('section',{class:'hero'},h('h1',{},SYNC?'Cannot reach shared storage':'Storage unavailable'),h('p',{},SYNC?'Please check your internet connection and try again.':'This archive needs browser storage. Please disable private browsing and reload.'),h('button',{class:'btn',onclick:()=>{app.replaceChildren();boot()}},'Try again')))}}
+boot();
+</script>
+</body>
+</html>
